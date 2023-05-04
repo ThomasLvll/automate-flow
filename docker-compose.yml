@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  app:
+    build: ./build/app
+    restart: always
+    command: npm start
+    environment:
+    - NODE_ENV=development
+    - MONGO_URL=mongodb://mongo:27017
+    - REDIS_URL=redis://redis:6379
+    env_file:
+    - .env.app
+    networks:
+    - cache
+    - db
+    ports:
+    - "2100:3000"
+  
+  redis:
+    image: redis:latest
+    restart: always
+    networks:
+    - backend-cache
+  
+  mongo:
+    image: mongo:latest
+    restart: always
+    networks:
+    - db
+    volumes:
+    - db-data:/data/db
+
+
+networks:
+  cache:
+  db:
+
+
+volumes:
+  db-data:
