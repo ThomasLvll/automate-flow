@@ -1,10 +1,10 @@
 FROM node:20
 WORKDIR /app
 
-COPY ./src/package*.json ./
+COPY ./source/package*.json ./
 RUN npm install
 
-COPY ./src .
+COPY ./source .
 RUN npm run build
 
 EXPOSE 3000
