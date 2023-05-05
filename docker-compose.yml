@@ -2,13 +2,16 @@ version: "3.9"
 
 services:
   app:
-    build: ./build/app
+    build: ./build
     restart: always
-    command: npm start
+    command: bash
+    tty: true
+    stdin_open: true
     environment:
     - NODE_ENV=development
     - MONGO_URL=mongodb://mongo:27017
     - REDIS_URL=redis://redis:6379
+    - NTFY_URL=http://51.77.223.186:3000
     env_file:
     - .env.app
     networks:
@@ -16,12 +19,14 @@ services:
     - db
     ports:
     - "2100:3000"
+    volumes:
+    - ./app:/app
   
   redis:
     image: redis:latest
     restart: always
     networks:
-    - backend-cache
+    - cache
   
   mongo:
     image: mongo:latest

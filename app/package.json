@@ -5,6 +5,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "dev": "tsc && node dist/index.js",
+    "dev:watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold\" \"tsc -w\" \"node --watch dist/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Thomas Léveillé <leveille.thomas77@gmail.com>",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
+    "concurrently": "^8.0.1",
     "typescript": "^5.0.4"
   }
 }

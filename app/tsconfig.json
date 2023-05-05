@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "moduleResolution": "node",
-        "module": "ES2022",
+        "module": "CommonJS",
         "target": "ES2022",
         "outDir": "dist",
         "esModuleInterop": true,
